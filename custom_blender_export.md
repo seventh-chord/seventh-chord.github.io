@@ -6,19 +6,19 @@ author: Morten H. Solvang
 
 I use blender's built in python scripting capabilities to export models in a custom binary format. This gives me greater control over the model pipeline in my game, in turn allowing me to do some handy things. For example, I can *"draw"* hitboxes in blender and load them directly in my game, without going through external formats or tools.
 
-In this post I will talk a bit about how to write such an exporter exporter, and which benefits I see in using it over using blender's default exporters. Note that there won't be a complete code sample, as you probably want to write a custom format yourself if you are doing this.
+In this post, I will talk a bit about how to write such an exporter, and which benefits I see in using it over using blender's default exporters. Note that there won't be a complete code sample, as you probably want to write a custom format yourself if you are doing this.
 
-![Figure 1: The process, exemplified by beautifull programmer art](figures/custom_blender_export_figure_1.png)
+![Figure 1: The process, exemplified by beautiful programmer art](figures/custom_blender_export_figure_1.png)
 
 For reference, this was done in blender version *2.75*. Things might be different in other versions!
 
 ## Why?
 
-Writing the exporter and corresponding importer definetly was a bit of work, but I still think that it was a worthwhile project. For one, I really enjoyed working on it, and usually that in itself is enough justification for a hobby project. There are however also some tangible benefits over the standard ways of exporting in blender:
+Writing the exporter and corresponding importer definitely was a bit of work, but I still think that it was a worthwhile project. For one, I really enjoyed working on it, and usually that in itself is enough justification for a hobby project. There are however also some tangible benefits over the standard ways of exporting in blender:
 
 For one, I can retrieve exactly the data I am interested in. With other model formats, you have to sift through the information stored in the format to get the values you want in your game. With a custom exporter, you can move this sifting to the exporter as you have full control over the entire pipeline. Additionally, I know for certain that I can parse every valid model file my generator outputs.
 
-As shown in figure 1, I can bundle additional data in my model exports. I am sure you could somehow hoax formats like `.fbx` or `.dae` into doing something like this, but the complexity of these formats have never alowed me to use them efficiently or enjoyably. Being able to place hitboxes directly inside blender gives a nice usability and productivity benefit, as I don't have to fiddle around with some other custom solution.
+As shown in figure 1, I can bundle additional data in my model exports. I am sure you could somehow hoax formats like `.fbx` or `.dae` into doing something like this, but the complexity of these formats have never allowed me to use them efficiently or enjoyably. Being able to place hitboxes directly inside blender gives a nice usability and productivity benefit, as I don't have to fiddle around with some other custom solution.
 
 
 
@@ -34,7 +34,7 @@ Legend for figure 2:
 
 1. Output in the system console. `print()` prints to the system console rather than the integrated console. You can toggle this console via `Window > Toggle System Console`
 
-2. You switch to the built in text editor using this dropdown. You can also write in an external editor, which is a lot nicer. See [here](https://blender.stackexchange.com/a/56709) for instructions on how to run an external file (Not sure if the solution there is *good* though).
+2. You switch to the built-in text editor using this dropdown. You can also write in an external editor, which is a lot nicer. See [here](https://blender.stackexchange.com/a/56709) for instructions on how to run an external file (Not sure if the solution there is *good* though).
 
 3. Press this button to run your script. For me, the button exports all the models in the scene.
 

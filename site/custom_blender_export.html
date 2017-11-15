@@ -81,15 +81,15 @@ code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <p class="date">November, 2017</p>
 </header>
 <p>I use blender’s built in python scripting capabilities to export models in a custom binary format. This gives me greater control over the model pipeline in my game, in turn allowing me to do some handy things. For example, I can <em>“draw”</em> hitboxes in blender and load them directly in my game, without going through external formats or tools.</p>
-<p>In this post I will talk a bit about how to write such an exporter exporter, and which benefits I see in using it over using blender’s default exporters. Note that there won’t be a complete code sample, as you probably want to write a custom format yourself if you are doing this.</p>
+<p>In this post, I will talk a bit about how to write such an exporter, and which benefits I see in using it over using blender’s default exporters. Note that there won’t be a complete code sample, as you probably want to write a custom format yourself if you are doing this.</p>
 <figure>
-<img src="figures/custom_blender_export_figure_1.png" alt="Figure 1: The process, exemplified by beautifull programmer art" /><figcaption>Figure 1: The process, exemplified by beautifull programmer art</figcaption>
+<img src="figures/custom_blender_export_figure_1.png" alt="Figure 1: The process, exemplified by beautiful programmer art" /><figcaption>Figure 1: The process, exemplified by beautiful programmer art</figcaption>
 </figure>
 <p>For reference, this was done in blender version <em>2.75</em>. Things might be different in other versions!</p>
 <h2 id="why">Why?</h2>
-<p>Writing the exporter and corresponding importer definetly was a bit of work, but I still think that it was a worthwhile project. For one, I really enjoyed working on it, and usually that in itself is enough justification for a hobby project. There are however also some tangible benefits over the standard ways of exporting in blender:</p>
+<p>Writing the exporter and corresponding importer definitely was a bit of work, but I still think that it was a worthwhile project. For one, I really enjoyed working on it, and usually that in itself is enough justification for a hobby project. There are however also some tangible benefits over the standard ways of exporting in blender:</p>
 <p>For one, I can retrieve exactly the data I am interested in. With other model formats, you have to sift through the information stored in the format to get the values you want in your game. With a custom exporter, you can move this sifting to the exporter as you have full control over the entire pipeline. Additionally, I know for certain that I can parse every valid model file my generator outputs.</p>
-<p>As shown in figure 1, I can bundle additional data in my model exports. I am sure you could somehow hoax formats like <code>.fbx</code> or <code>.dae</code> into doing something like this, but the complexity of these formats have never alowed me to use them efficiently or enjoyably. Being able to place hitboxes directly inside blender gives a nice usability and productivity benefit, as I don’t have to fiddle around with some other custom solution.</p>
+<p>As shown in figure 1, I can bundle additional data in my model exports. I am sure you could somehow hoax formats like <code>.fbx</code> or <code>.dae</code> into doing something like this, but the complexity of these formats have never allowed me to use them efficiently or enjoyably. Being able to place hitboxes directly inside blender gives a nice usability and productivity benefit, as I don’t have to fiddle around with some other custom solution.</p>
 <h2 id="the-basics-of-scripting-in-python">The basics of scripting in python</h2>
 <p>In case you have never scripted in blender, I will give a brief introduction to this. Feel free to skip ahead if you already know this.</p>
 <p>First, you need to set yourself up for python scripting in blender. There are two “tools” to use: The built-in console and the text editor. Figure 2 shows a sample setup.</p>
@@ -99,7 +99,7 @@ code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <p>Legend for figure 2:</p>
 <ol type="1">
 <li><p>Output in the system console. <code>print()</code> prints to the system console rather than the integrated console. You can toggle this console via <code>Window &gt; Toggle System Console</code></p></li>
-<li><p>You switch to the built in text editor using this dropdown. You can also write in an external editor, which is a lot nicer. See <a href="https://blender.stackexchange.com/a/56709">here</a> for instructions on how to run an external file (Not sure if the solution there is <em>good</em> though).</p></li>
+<li><p>You switch to the built-in text editor using this dropdown. You can also write in an external editor, which is a lot nicer. See <a href="https://blender.stackexchange.com/a/56709">here</a> for instructions on how to run an external file (Not sure if the solution there is <em>good</em> though).</p></li>
 <li><p>Press this button to run your script. For me, the button exports all the models in the scene.</p></li>
 <li><p>The interactive console can be found in the same dropdown menu as the text editor. It has autocomplete (<code>Ctrl + Space</code>), which coupled with some guesswork gets you a long way in figuring out the fields available on objects.</p></li>
 <li><p>You can have multiple files open in blender’s text editor, and this menu switches between them. At first, it will say <code>+ New</code>. If you press it once, it creates a new “file”. You have to do this before you can start writing code.</p></li>
