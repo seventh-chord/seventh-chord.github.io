@@ -22,7 +22,7 @@ As shown in figure 1, I can bundle additional data in my model exports. I am sur
 
 
 
-## The basics of scripting in python
+## The basics of scripting in blender
 
 In case you have never scripted in blender, I will give a brief introduction to this. Feel free to skip ahead if you already know this.
 

@@ -74,6 +74,7 @@ pre.sourceCode {
     padding: 10px;
     margin-left: auto;
     margin-right: auto;
+    overflow-y: auto;
 }
 
 pre.sourceCode code { 
