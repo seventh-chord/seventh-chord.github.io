@@ -4,3 +4,5 @@ Just some things I want to write about
  * My custom vec-math stuff (Specifically, the 2d cross product and complex multiplication)
  * The simple "minkowski" collision detection in mapman
  * 5 point perspective rendering??
+ * How many splits do you need to draw a curved line so that it looks smooth when rasterized?
+ * C-like enum transmutes in rust, when discriminant is invalid (e.g. transmute 3 to enum {A=1,B=2})
