@@ -6,8 +6,8 @@ html {
     background-color: #f6f6f3;
     color: #111;
 
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     margin-bottom: 60px;
 
     text-align: justify;
@@ -15,7 +15,7 @@ html {
 
 @media (min-width: 900px) {
     html {
-        width: 820px;
+        width: 850px;
         margin-left: auto;
         margin-right: auto;
     }
