@@ -4,7 +4,7 @@ date:   November, 2017
 author: Morten H. Solvang
 ---
 
-I use blender's built in python scripting capabilities to export models in a custom binary format. This gives me greater control over the model pipeline in my game, in turn allowing me to do some handy things. For example, I can *"draw"* hitboxes in blender and load them directly in my game, without going through external formats or tools.
+I use blender's built in python scripting capabilities to export models in a custom binary format. This gives me greater control over the model pipeline in my game, in turn allowing me to do some handy things. For example, I can *"draw"* hitboxes in blender and load them directly into my game, without going through external formats or tools.
 
 In this post, I will talk a bit about how to write such an exporter, and which benefits I see in using it over using blender's default exporters. Note that there won't be a complete code sample, as you probably want to write a custom format yourself if you are doing this.
 
@@ -16,7 +16,7 @@ For reference, this was done in blender version *2.75*. Things might be differen
 
 Writing the exporter and corresponding importer definitely was a bit of work, but I still think that it was a worthwhile project. For one, I really enjoyed working on it, and usually that in itself is enough justification for a hobby project. There are however also some tangible benefits over the standard ways of exporting in blender:
 
-For one, I can retrieve exactly the data I am interested in. With other model formats, you have to sift through the information stored in the format to get the values you want in your game. With a custom exporter, you can move this sifting to the exporter as you have full control over the entire pipeline. Additionally, I know for certain that I can parse every valid model file my generator outputs.
+For one, I can retrieve exactly the data I am interested in. With other model formats, you have to sift through the information stored in the format to get the values you want when loading the file in game. With a custom exporter, you can move this sifting to the exporter as you have full control over the entire pipeline. Additionally, I know for certain that I can parse every valid model file my generator outputs.
 
 As shown in figure 1, I can bundle additional data in my model exports. I am sure you could somehow hoax formats like `.fbx` or `.dae` into doing something like this, but the complexity of these formats have never allowed me to use them efficiently or enjoyably. Being able to place hitboxes directly inside blender gives a nice usability and productivity benefit, as I don't have to fiddle around with some other custom solution.
 
@@ -24,9 +24,9 @@ As shown in figure 1, I can bundle additional data in my model exports. I am sur
 
 ## The basics of scripting in blender
 
-In case you have never scripted in blender, I will give a brief introduction to this. Feel free to skip ahead if you already know this.
+In case you have never scripted in blender before, I will give a brief introduction to this. Feel free to skip ahead to the next section if you already know this though.
 
-First, you need to set yourself up for python scripting in blender. There are two "tools" to use: The built-in console and the text editor. Figure 2 shows a sample setup.
+There are two "tools" to use when writing scripts in blender: The built-in console and the text editor. Figure 2 shows a sample setup.
 
 ![Figure 2: The basic setup for scripting in blender](figures/custom_blender_export_figure_2.png)
 
@@ -40,7 +40,7 @@ Legend for figure 2:
 
 4. The interactive console can be found in the same dropdown menu as the text editor. It has autocomplete (`Ctrl + Space`), which coupled with some guesswork gets you a long way in figuring out the fields available on objects.
 
-5. You can have multiple files open in blender's text editor, and this menu switches between them. At first, it will say `+ New`. If you press it once, it creates a new "file". You have to do this before you can start writing code.
+5. You can have multiple "files" open in blender's text editor, and this menu switches between them. At first, it will say `+ New`. If you press it once, it creates a new "file". You have to do this before you can start writing code. Note that these "files" are stored inside the `.blend` file.
 
 Lastly, you should `import bpy` to access blender's python api.
 
@@ -87,14 +87,14 @@ for material_slot in object.material_slots:
         diffuse = material.diffuse_color
 ```
 
-For the hitboxes themselves, I don't actually use blenders meshes. The hitboxes are the simple cubes, which I move around in blenders *object* mode. All info I need about the hitboxes can be retrieved through `object.location`, `object.rotation_*` and `object.dimensions`. Blender stores rotation in different variables depending on the rotation mode selected in the editor. By default, it uses `object.rotation_euler`. You can call `.to_quaternion()` on this if you want to export quaternions. Note that these values only are "reliable" if you don't modify the mesh of an object! 
+For the hitboxes themselves, I don't actually use blenders meshes. The hitboxes are the simple cubes, which I move around in blenders *object* mode. All info I need about the hitboxes can be retrieved through `object.location`, `object.rotation_*` and `object.dimensions`. Blender stores rotation in different variables depending on the rotation mode selected in the editor. By default, it uses `object.rotation_euler`. You can call `.to_quaternion()` on this if you want to export quaternions. Note that these values only are "reliable" if you edit the object in *object* mode: If you rotate the mesh in *edit* mode changes will not be reflected through these variables.! 
 
 
 ## Writing a binary file in python
 
 The last step is actually exporting the data. I chose a binary format, as it seemed simpler both to write and parse. Note that I won't be covering the parsing of the format here, as that is somewhat language dependent.
 
-In python, you can write binary data to a file using `struct.pack` (remember to `import struct` first). For example, `struct.pack('<H', my_variable)` creates a binary string of an unsigned 16 bit integer in little endian. Further documentation can be found [here](https://docs.python.org/3/library/struct.html).
+In python, you can write binary data to a file using `struct.pack` (remember to `import struct` first). For example, `struct.pack('<H', my_variable)` creates a binary string of an unsigned 16 bit integer (`H`) in little endian (`<`). Instead of `H` you can use `f` for 32 bit float, or `I` for unsigned 32 bit integer. You can also chain the letters to write multiple primitives at once. For example, `struct.pack('<ff', x, y)` writes two floats. Further documentation can be found [here](https://docs.python.org/3/library/struct.html).
 
 You can open a file for writing with `open(file_path, 'wb')`. `'wb'` stands for write binary.
 
@@ -122,4 +122,4 @@ When parsing, you first read the length and then load the next n bytes as a utf-
 
 ## Conclusion
 
-Writing this exporter has allowed me to better integrate blender in my game making process. Furthermore, it brings me a certain joy having finally found what I think is a relatively clean solution to the problem of model importing and exporting. The files created by my exporter are about the same size as standard obj files, but I could probably make them a lot smaller if I were to put in the effort.
+Writing this exporter has allowed me to better integrate blender in my game-making process. Furthermore, it has cut down on the amount of code I need to maintain in order to export/import models. The files created by my exporter are about the same size as standard obj files, but I could probably make them a lot smaller if I were to put in the effort.

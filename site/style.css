@@ -1,6 +1,4 @@
 
-/* Hello world */
-
 html {
     font-family: Georgia, Serif;
     background-color: #f6f6f3;
@@ -9,7 +7,6 @@ html {
     margin-left: 0.5em;
     margin-right: 0.5em;
     margin-bottom: 60px;
-
 }
 
 @media (min-width: 900px) {
