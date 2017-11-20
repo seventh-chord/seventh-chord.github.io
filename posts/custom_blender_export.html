@@ -66,14 +66,14 @@ code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
   </style>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
 <div id="back-button">
-    <a href="index.html">Home</a>
+    <a href="../index.html">Home</a>
 </div>
 <header>
 <h1 class="title">A custom binary exporter in blender</h1>
@@ -83,7 +83,7 @@ code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <p>I use blender’s built in python scripting capabilities to export models in a custom binary format. This gives me greater control over the model pipeline in my game, in turn allowing me to do some handy things. For example, I can <em>“draw”</em> hitboxes in blender and load them directly into my game, without going through external formats or tools.</p>
 <p>In this post, I will talk a bit about how to write such an exporter, and which benefits I see in using it over using blender’s default exporters. Note that there won’t be a complete code sample, as you probably want to write a custom format yourself if you are doing this.</p>
 <figure>
-<img src="figures/custom_blender_export_figure_1.png" alt="Figure 1: The process, exemplified by beautiful programmer art" /><figcaption>Figure 1: The process, exemplified by beautiful programmer art</figcaption>
+<img src="../figures/custom_blender_export_figure_1.png" alt="Figure 1: The process, exemplified by beautiful programmer art" /><figcaption>Figure 1: The process, exemplified by beautiful programmer art</figcaption>
 </figure>
 <p>For reference, this was done in blender version <em>2.75</em>. Things might be different in other versions!</p>
 <h2 id="why">Why?</h2>
@@ -94,7 +94,7 @@ code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <p>In case you have never scripted in blender before, I will give a brief introduction to this. Feel free to skip ahead to the next section if you already know this though.</p>
 <p>There are two “tools” to use when writing scripts in blender: The built-in console and the text editor. Figure 2 shows a sample setup.</p>
 <figure>
-<img src="figures/custom_blender_export_figure_2.png" alt="Figure 2: The basic setup for scripting in blender" /><figcaption>Figure 2: The basic setup for scripting in blender</figcaption>
+<img src="../figures/custom_blender_export_figure_2.png" alt="Figure 2: The basic setup for scripting in blender" /><figcaption>Figure 2: The basic setup for scripting in blender</figcaption>
 </figure>
 <p>Legend for figure 2:</p>
 <ol type="1">

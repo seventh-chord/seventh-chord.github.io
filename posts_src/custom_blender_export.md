@@ -8,7 +8,7 @@ I use blender's built in python scripting capabilities to export models in a cus
 
 In this post, I will talk a bit about how to write such an exporter, and which benefits I see in using it over using blender's default exporters. Note that there won't be a complete code sample, as you probably want to write a custom format yourself if you are doing this.
 
-![Figure 1: The process, exemplified by beautiful programmer art](figures/custom_blender_export_figure_1.png)
+![Figure 1: The process, exemplified by beautiful programmer art](../figures/custom_blender_export_figure_1.png)
 
 For reference, this was done in blender version *2.75*. Things might be different in other versions!
 
@@ -28,7 +28,7 @@ In case you have never scripted in blender before, I will give a brief introduct
 
 There are two "tools" to use when writing scripts in blender: The built-in console and the text editor. Figure 2 shows a sample setup.
 
-![Figure 2: The basic setup for scripting in blender](figures/custom_blender_export_figure_2.png)
+![Figure 2: The basic setup for scripting in blender](../figures/custom_blender_export_figure_2.png)
 
 Legend for figure 2:
 
