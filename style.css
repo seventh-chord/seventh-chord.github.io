@@ -53,6 +53,14 @@ figure {
 }
 figure > img { width: 100%; } /* Scale the image */
 
+table {
+    margin: 0 auto;
+}
+td {
+    padding: 0 10px;
+    text-align: center;
+}
+
 code {
     white-space: pre-wrap;
     font-family: Consolas, monospace;
@@ -80,4 +88,4 @@ pre.sourceCode code {
 } 
 
 .email_a::after { content: '.'; }
-.email_b::after { content: '@'; }
+.email_b::after { content: '@'; } 
