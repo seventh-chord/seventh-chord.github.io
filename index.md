@@ -5,10 +5,6 @@ author: Morten H. Solvang
 
 Posts are listed below in chronological order, with newest posts comming first.
 
-## December 2017
-
-[2d rotation using complex numbers](posts/vecmath.html)
-
-## November 2017
+[Windows executables and section alignment](posts/windows_pe_small_sections.html)
 
 [A custom binary exporter in blender](posts/custom_blender_export.html)
